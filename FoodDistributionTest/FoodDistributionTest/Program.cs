@@ -8,7 +8,12 @@ namespace FoodDistributionTest
     {
         static void Main(string[] args)
         {
-            FoodDistribution(new int[] { 5, 2, 3, 4, 5 });
+            //FoodDistribution(new int[] { 5, 2, 3, 4, 5 });
+
+
+            FoodDistribution(new int[] { 5, 3, 1, 2, 1});
+
+
         }
 
         public static int FoodDistribution(int[] arr)
@@ -21,49 +26,65 @@ namespace FoodDistributionTest
                You are free to modify the return type. */
 
             var sandwiches = arr[0];
-
-            var peopleList = new List<int>();
-            for (int i = 1; i <= arr.Length -1; i++)
+            var peopleArray = new int[arr.Length - 1];
+            for(int k = 0; k <= peopleArray.Length -1; k++)
             {
-
-                peopleList.Add(arr[i]);
+                var l = k + 1;
+                peopleArray[k] = arr[l];
             }
 
-            peopleList.Sort();
+            Array.Sort(peopleArray);
 
+            var secondPeopleArray = new int[peopleArray.Length -1];
+            var pairOfPeople = new int[peopleArray.Length];
 
-            var pairOfPeople = new List<int>();
-            var secondPeopleList = new List<int>();
-            secondPeopleList.AddRange(peopleList);
-            secondPeopleList.RemoveAt(0);
+            Array.Copy(peopleArray, 1, secondPeopleArray, 0, peopleArray.Length -1);
 
-            foreach (var item1 in peopleList)
+            int j = 0;
+            int i = 0;
+            for (; i <= peopleArray.Length -1; i++)
             {
-                foreach (var item2 in secondPeopleList)
-                {
-                    if(item1 == item2)
-                    {
-                        pairOfPeople.Add(item1);
-                        pairOfPeople.Add(item2);
-                    }
-                    else if (item1 != item2 && sandwiches > 0)
-                    {
-                        var tempItem2Value = item2;
 
-                        while(sandwiches != 0 && (item1 != tempItem2Value))
+                for (; j <= secondPeopleArray.Length -1; j++)
+                {
+
+                    if (j == secondPeopleArray.Length -1)
+                        break;
+
+                    if (peopleArray[i] == secondPeopleArray[j])
+                    {
+                        pairOfPeople[i] = peopleArray[i];
+                        pairOfPeople[i+1] = secondPeopleArray[i];
+                        ++i;
+                        ++j;
+                    }
+                    else if (peopleArray[i] != secondPeopleArray[j] && sandwiches > 0)
+                    {
+                        var tempItem2Value = secondPeopleArray[j];
+
+                        while (sandwiches != 0 && (peopleArray[i] != tempItem2Value))
                         {
                             tempItem2Value--;
                             sandwiches--;
                         }
 
-                        pairOfPeople.Add(item1);
-                        pairOfPeople.Add(tempItem2Value);
+                        pairOfPeople[i] = peopleArray[i];
+                        pairOfPeople[i+1] = tempItem2Value;
+                        ++i;
+                        ++j+;
                     }
                 }
+
+            }
+                       
+            foreach (var item in peopleArray)
+            {
+                Console.WriteLine(item);
             }
 
+            Console.WriteLine();
+            Console.WriteLine();
 
-            //*****
             foreach (var item in pairOfPeople)
             {
                 Console.WriteLine(item);
