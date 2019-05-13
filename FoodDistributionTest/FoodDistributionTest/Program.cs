@@ -71,7 +71,7 @@ namespace FoodDistributionTest
                         pairOfPeople[i] = peopleArray[i];
                         pairOfPeople[i+1] = tempItem2Value;
                         ++i;
-                        ++j+;
+                        ++j;
                     }
                 }
 
