@@ -40,38 +40,44 @@ namespace FoodDistributionTest
 
             Array.Copy(peopleArray, 1, secondPeopleArray, 0, peopleArray.Length -1);
 
-            int j = 0;
+            
             int i = 0;
+
+
             for (; i <= peopleArray.Length -1; i++)
             {
 
-                for (; j <= secondPeopleArray.Length -1; j++)
+                for (int j = 0; j <= secondPeopleArray.Length -1; j++)
                 {
 
-                    if (j == secondPeopleArray.Length -1)
-                        break;
+                    //if (j == secondPeopleArray.Length -1)
+                    //    break;
 
-                    if (peopleArray[i] == secondPeopleArray[j])
+                    if (peopleArray[i] != 6 && secondPeopleArray[j] != 6)
                     {
-                        pairOfPeople[i] = peopleArray[i];
-                        pairOfPeople[i+1] = secondPeopleArray[i];
-                        ++i;
-                        ++j;
-                    }
-                    else if (peopleArray[i] != secondPeopleArray[j] && sandwiches > 0)
-                    {
-                        var tempItem2Value = secondPeopleArray[j];
 
-                        while (sandwiches != 0 && (peopleArray[i] != tempItem2Value))
+                        if (peopleArray[i] == secondPeopleArray[j])
                         {
-                            tempItem2Value--;
-                            sandwiches--;
+                            pairOfPeople[i] = peopleArray[i];
+                            pairOfPeople[i + 1] = secondPeopleArray[j];
+                            peopleArray[i] = 6;
+                            secondPeopleArray[j] = 6;
                         }
+                        else if (peopleArray[i] != secondPeopleArray[j] && sandwiches > 0)
+                        {
+                            var tempItem2Value = secondPeopleArray[j];
 
-                        pairOfPeople[i] = peopleArray[i];
-                        pairOfPeople[i+1] = tempItem2Value;
-                        ++i;
-                        ++j;
+                            while (sandwiches != 0 && (peopleArray[i] != tempItem2Value))
+                            {
+                                tempItem2Value--;
+                                sandwiches--;
+                            }
+
+                            pairOfPeople[i] = peopleArray[i];
+                            pairOfPeople[i + 1] = tempItem2Value;
+                            peopleArray[i] = 6;
+                            secondPeopleArray[j] = 6;
+                        }
                     }
                 }
 
