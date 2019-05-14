@@ -39,20 +39,13 @@ namespace FoodDistributionTest
             var pairOfPeople = new int[peopleArray.Length];
 
             Array.Copy(peopleArray, 1, secondPeopleArray, 0, peopleArray.Length -1);
+                                   
 
-            
-            int i = 0;
-
-
-            for (; i <= peopleArray.Length -1; i++)
+            for (int i = 0; i <= peopleArray.Length -1; i++)
             {
 
                 for (int j = 0; j <= secondPeopleArray.Length -1; j++)
                 {
-
-                    //if (j == secondPeopleArray.Length -1)
-                    //    break;
-
                     if (peopleArray[i] != 6 && secondPeopleArray[j] != 6)
                     {
 
@@ -80,7 +73,6 @@ namespace FoodDistributionTest
                         }
                     }
                 }
-
             }
                        
             foreach (var item in peopleArray)
