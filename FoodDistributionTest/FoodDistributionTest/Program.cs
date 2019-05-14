@@ -18,13 +18,6 @@ namespace FoodDistributionTest
 
         public static int FoodDistribution(int[] arr)
         {
-
-            // code goes here  
-            /* Note: In C# the return type of a function and the 
-               parameter types being passed are defined, so this return 
-               call must match the return type of the function.
-               You are free to modify the return type. */
-
             var sandwiches = arr[0];
             var peopleArray = new int[arr.Length - 1];
             for(int k = 0; k <= peopleArray.Length -1; k++)
@@ -33,7 +26,7 @@ namespace FoodDistributionTest
                 peopleArray[k] = arr[l];
             }
 
-            Array.Sort(peopleArray);
+            //Array.Sort(peopleArray);
 
             var secondPeopleArray = new int[peopleArray.Length -1];
             var pairOfPeople = new int[peopleArray.Length];
@@ -49,28 +42,50 @@ namespace FoodDistributionTest
                     if (peopleArray[i] != 6 && secondPeopleArray[j] != 6)
                     {
 
-                        if (peopleArray[i] == secondPeopleArray[j])
+                        if (peopleArray[i] <= 1 || peopleArray[i] == 1)
                         {
                             pairOfPeople[i] = peopleArray[i];
-                            pairOfPeople[i + 1] = secondPeopleArray[j];
                             peopleArray[i] = 6;
                             secondPeopleArray[j] = 6;
                         }
                         else if (peopleArray[i] != secondPeopleArray[j] && sandwiches > 0)
                         {
-                            var tempItem2Value = secondPeopleArray[j];
+                            var tempItem1Value = peopleArray[j];
 
-                            while (sandwiches != 0 && (peopleArray[i] != tempItem2Value))
+                            while (sandwiches != 0 && (tempItem1Value != secondPeopleArray[j] ))
                             {
-                                tempItem2Value--;
+                                tempItem1Value--;
                                 sandwiches--;
                             }
 
-                            pairOfPeople[i] = peopleArray[i];
-                            pairOfPeople[i + 1] = tempItem2Value;
+                            pairOfPeople[i] = tempItem1Value;
                             peopleArray[i] = 6;
                             secondPeopleArray[j] = 6;
                         }
+                    }
+                    else if (peopleArray[peopleArray.Length -1] != 6 && secondPeopleArray[secondPeopleArray.Length -1] == 6)
+                    {
+
+
+                        if (peopleArray[i] <= 1 || peopleArray[i] == 1)
+                        {
+                            pairOfPeople[i] = peopleArray[i];
+                            peopleArray[i] = 6;
+                            secondPeopleArray[j] = 6;
+                            break;
+                        }
+
+                        var tempItem1Value = peopleArray[j];
+
+                        while (sandwiches != 0 && (tempItem1Value != pairOfPeople[i]))
+                        {
+
+                            tempItem1Value--;
+                            sandwiches--;
+                        }
+
+                        pairOfPeople[i] = tempItem1Value;
+                        peopleArray[i] = 6;
                     }
                 }
             }
