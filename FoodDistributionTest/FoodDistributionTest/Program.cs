@@ -8,10 +8,10 @@ namespace FoodDistributionTest
     {
         static void Main(string[] args)
         {
-            //FoodDistribution(new int[] { 5, 2, 3, 4, 5 });
+            FoodDistribution(new int[] { 5, 2, 3, 4, 5 });
 
 
-            FoodDistribution(new int[] { 5, 3, 1, 2, 1});
+            //FoodDistribution(new int[] { 5, 3, 1, 2, 1});
 
 
         }
